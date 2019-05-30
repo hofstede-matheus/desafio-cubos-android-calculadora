@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.view.View
 import com.matheushofstede.calculadora.Interfaces.CalculadoraPresenterInterface
 import com.matheushofstede.calculadora.Interfaces.CalculadoraViewInterface
 import com.matheushofstede.calculadora.Presenters.CalculadoraPresenter
@@ -26,8 +25,7 @@ class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
 
         presenter = CalculadoraPresenter(this)
 
-        //On click listeners
-
+        // On click listeners //
         //numeros
 
         btn_num_0.setOnClickListener{
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
             return@setOnLongClickListener true
         }
 
-
+        // não vale olhar antes de decobrir o Easter Egg//
         resultado.setOnClickListener {
             easteregg++
             if(easteregg >= 10){
@@ -101,7 +99,6 @@ class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
         }
 
     }
-
 
     override fun exibeResultado(valor: String) {
         resultado.text = valor
