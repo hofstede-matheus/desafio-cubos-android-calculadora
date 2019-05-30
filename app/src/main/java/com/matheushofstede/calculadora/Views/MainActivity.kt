@@ -1,5 +1,6 @@
 package com.matheushofstede.calculadora.Views
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -9,10 +10,12 @@ import com.matheushofstede.calculadora.Interfaces.CalculadoraViewInterface
 import com.matheushofstede.calculadora.Presenters.CalculadoraPresenter
 import com.matheushofstede.calculadora.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
 
     lateinit var presenter: CalculadoraPresenterInterface
+    var easteregg = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +90,14 @@ class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
         btn_corrigir.setOnLongClickListener {
             presenter.resetaTudo()
             return@setOnLongClickListener true
+        }
+
+
+        resultado.setOnClickListener {
+            easteregg++
+            if(easteregg >= 10){
+                btn_calcular.setBackgroundColor(Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)))
+            }
         }
 
     }
