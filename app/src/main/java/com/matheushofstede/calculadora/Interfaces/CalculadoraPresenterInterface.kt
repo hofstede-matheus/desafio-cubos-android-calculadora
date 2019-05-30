@@ -2,8 +2,9 @@ package com.matheushofstede.calculadora.Interfaces
 
 interface CalculadoraPresenterInterface {
     fun calcula()
-    fun valida()
+    fun isValida(): Boolean
     fun recebeValor(valor: String)
-    fun reseta()
+    fun resetaTudo()
+    fun removeDigito()
 
 }

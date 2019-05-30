@@ -2,6 +2,8 @@ package com.matheushofstede.calculadora.Views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.view.View
 import com.matheushofstede.calculadora.Interfaces.CalculadoraPresenterInterface
 import com.matheushofstede.calculadora.Interfaces.CalculadoraViewInterface
 import com.matheushofstede.calculadora.Presenters.CalculadoraPresenter
@@ -9,14 +11,15 @@ import com.matheushofstede.calculadora.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
+
     lateinit var presenter: CalculadoraPresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        formula.setText("0");
-        resultado.setText("0");
+        formula.text = "0"
+        resultado.text = "0"
 
         presenter = CalculadoraPresenter(this)
 
@@ -79,21 +82,29 @@ class MainActivity : AppCompatActivity(), CalculadoraViewInterface {
             presenter.calcula()
         }
         btn_corrigir.setOnClickListener{
-            presenter.reseta()
+            presenter.removeDigito()
         }
-
-
-
+        btn_corrigir.setOnLongClickListener {
+            presenter.resetaTudo()
+            return@setOnLongClickListener true
+        }
 
     }
 
 
-
-    override fun exibeResultado() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun exibeResultado(valor: String) {
+        resultado.text = valor
     }
 
     override fun atualizaCalculo(valor: String) {
-        formula.setText(valor);
+        formula.text = valor
+    }
+
+    override fun exibeDialogo() {
+        AlertDialog.Builder(this)
+            .setTitle("Algo de errado não está certo!")
+            .setPositiveButton("talquei") { _,_ -> }
+            .setMessage("Por favor, digite uma operação válida")
+            .show()
     }
 }
