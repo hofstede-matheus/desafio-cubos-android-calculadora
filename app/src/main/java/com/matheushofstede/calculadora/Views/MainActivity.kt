@@ -1,7 +1,8 @@
-package com.matheushofstede.calculadora
+package com.matheushofstede.calculadora.Views
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.matheushofstede.calculadora.R
 
 class MainActivity : AppCompatActivity() {
 
