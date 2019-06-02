@@ -94,6 +94,8 @@ class CalculadoraPresenter(view: CalculadoraViewInterface) : CalculadoraPresente
 
             posicao++
         }
+        //Primeiro checa se num1 ou num2 está vazio, pq se fosse depois daria exception na proxima comparacao
+        if(num1 == "" || num2 == "") return false
         // opa, divisão por zero
         if(num2.toFloat() == 0F) return false
 
